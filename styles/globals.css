@@ -600,6 +600,10 @@ a {
   margin: 0 .5em;
 }
 
+.ambassador-img {
+  height: 100%;
+}
+
 .ambassador-bloc {
   width: 50%;
   min-width: 500px;

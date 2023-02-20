@@ -3,7 +3,7 @@ import Image from "next/image";
 import { useAppDataContext } from "../../contexts/app-data-context";
 
 export default function Footer() {
-    const { t, isMobile, getImage } = useAppDataContext();
+    const { t, isMobile } = useAppDataContext();
 
     return (
         <div className="footer f-col">
@@ -12,7 +12,7 @@ export default function Footer() {
                     <Image
                         className="c-p"
                         alt="Snaxx logo image"
-                        src={getImage("snaxx-logo.webp")}
+                        src="/snaxx-logo.webp"
                         width={!isMobile ? "181" : "128"}
                         height={!isMobile ? "42" : "30"}
                         onClick={() => push("/", null, { locale: locale })}

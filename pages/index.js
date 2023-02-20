@@ -1,6 +1,6 @@
 import { useAppDataContext } from '../contexts/app-data-context';
 import MainContainer from '../components/common/main-container';
-import { useRouter } from 'next/router';
+// import { useRouter } from 'next/router';
 import { useRef } from 'react';
 import Image from 'next/image';
 
@@ -23,8 +23,8 @@ const TOOLS_ITEMS = [
 ];
 
 export default function Home() {
-  const { t, isMobile, getImage } = useAppDataContext();
-  const { push, locale } = useRouter();
+  const { t, isMobile } = useAppDataContext();
+  // const { push, locale } = useRouter();
   const firstInputRef = useRef();
 
   return (
@@ -49,7 +49,7 @@ export default function Home() {
         <div className='f1 f-row jc-c ai-c'>
           <Image
             alt="Demo with phone image"
-            src={getImage("demo-phone.webp")}
+            src="/demo-phone.webp"
             width={!isMobile ? "571" : "320"}
             height={!isMobile ? "609" : "341"}
           />
@@ -61,7 +61,7 @@ export default function Home() {
           <Image
             className='sticker1'
             alt="Presentation first sticker image"
-            src={getImage("sticker1.webp")}
+            src="/sticker1.webp"
             width={!isMobile ? "655" : "450"}
             height={!isMobile ? "640" : "440"}
           />
@@ -77,7 +77,7 @@ export default function Home() {
           <Image
             className='arrow-img'
             alt="Accent colored arrow image"
-            src={getImage("arrow-accent.webp")}
+            src="/arrow-accent.webp"
             width={!isMobile ? "347" : "280"}
             height={!isMobile ? "347" : "280"}
           />
@@ -97,7 +97,7 @@ export default function Home() {
           <Image
             className='sticker2'
             alt="Presentation second sticker image"
-            src={getImage("sticker2.webp")}
+            src="/sticker2.webp"
             width={!isMobile ? "720" : "500"}
             height={!isMobile ? "767" : "533"}
           />
