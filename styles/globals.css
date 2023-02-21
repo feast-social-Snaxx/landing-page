@@ -343,7 +343,6 @@ a {
   max-height: 100px;
   border-radius: 1vw;
   box-shadow: 0 0 1vw #757575;
-  color: black;
   opacity: .9;
 }
 
@@ -364,13 +363,6 @@ a {
   justify-content: space-around;
 }
 
-.text-content {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  margin-left: 3vw;
-}
-
 .toast {
   width: auto;
   height: auto;
@@ -381,6 +373,9 @@ a {
 .close-btn {
   align-self: flex-start;
   position: relative;
+  left: 10px;
+  color: white;
+  fill: white;
 }
 
 .fade-in-from-left-section {
@@ -758,23 +753,32 @@ a {
   .footer-link-bloc {
     min-width: 300px;
   }
-}
 
-@media (max-width: 480px) {
-  .tool-item {
-    justify-content: start;
-    margin-bottom: -15vw;
+  .close-btn {
+    left: 5px;
   }
 
-  .tool-container {
-    width: 105vw;
-  }
-
-  .tool-marg {
-    margin: .5vw 1.5vw;
-  }
-
-  .tool-item h3 {
-    margin-top: -6vw;
+  .notification {
+    width: auto;
+    max-height: 200px;
   }
 }
+
+  @media (max-width: 480px) {
+    .tool-item {
+      justify-content: start;
+      margin-bottom: -15vw;
+    }
+
+    .tool-container {
+      width: 105vw;
+    }
+
+    .tool-marg {
+      margin: .5vw 1.5vw;
+    }
+
+    .tool-item h3 {
+      margin-top: -6vw;
+    }
+  }

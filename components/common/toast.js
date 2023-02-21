@@ -1,10 +1,6 @@
 import { useEffect, useState } from 'react';
 
 import { Close } from "@mui/icons-material";
-import { Info } from "@mui/icons-material";
-import { Warning } from "@mui/icons-material";
-import { Error } from "@mui/icons-material";
-import { Check } from "@mui/icons-material";
 import { useAppDataContext } from '../../contexts/app-data-context';
 
 export const ToastType = {
@@ -16,24 +12,16 @@ export const ToastType = {
 
 export const TOAST_THEMES = {
     0: {
-        backgroundColor: "#5BC0DE",
-        title: "info",
-        icon: <Info />,
+        backgroundColor: "#C1C4FF",
     },
     1: {
-        backgroundColor: "#5CB85C",
-        title: "success",
-        icon: <Check />,
+        backgroundColor: "#05397E",
     },
     2: {
         backgroundColor: "#F0AD4E",
-        title: "warning",
-        icon: <Warning />,
     },
     3: {
-        backgroundColor: "#D9534F",
-        title: "error",
-        icon: <Error />,
+        backgroundColor: "#FF4FB8",
     },
 };
 
@@ -77,17 +65,10 @@ export default function Toast({ toastList, autoDelete, dismissTime }) {
                         className={`notification toast`}
                         style={{ backgroundColor: TOAST_THEMES[toast.type].backgroundColor }}
                     >
-                        <div className={"toast-content txt-2"}>
-                            <div className="notification-image">
-                                {TOAST_THEMES[toast.type].icon}
-                            </div>
-                            <div className={"text-content"}>
-                                <p className="fs-m fw-b">{t(`notif.${TOAST_THEMES[toast.type].title}`)}</p>
-
-                                <p className="notification-message">
-                                    {toast.content}
-                                </p>
-                            </div>
+                        <div className={"fs-m toast-content"}>
+                            <p className="fs-xm c-white notification-message">
+                                {toast.content}
+                            </p>
 
                             <Close className={"close-btn"} onClick={() => deleteToast(toast.id)} />
                         </div>

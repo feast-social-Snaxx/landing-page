@@ -4,6 +4,9 @@ import MainContainer from '../components/common/main-container';
 import { useRef } from 'react';
 import Image from 'next/image';
 import ScrollAnimation from '../components/common/scroll-animation';
+import { useAppToastContext } from '../contexts/app-toast-context';
+import { ToastType } from '../components/common/toast';
+import snaxxApiService from '../services/snaxx-api-service';
 
 const TOOLS_ITEMS = [
   {
@@ -23,10 +26,36 @@ const TOOLS_ITEMS = [
   },
 ];
 
+const EMAIL_REGEX = /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/;
+
 export default function Home() {
   const { t, isMobile } = useAppDataContext();
+  const { addToast } = useAppToastContext();
   // const { push, locale } = useRouter();
   const firstInputRef = useRef();
+  const secondInputRef = useRef();
+
+  const register = (index) => {
+    let email;
+
+    if (index == 0) {
+      email = firstInputRef.current.value;
+    } else {
+      email = secondInputRef.current.value;
+    }
+
+    console.log
+    if (!email) {
+      addToast(ToastType.ERROR, "Missing email address");
+    } else {
+      if (!email.match(EMAIL_REGEX)) {
+        addToast(ToastType.ERROR, "Invalid email address");
+      } else {
+        // snaxxApiService.contact().then(r => {}, r => {});
+        addToast(ToastType.SUCCESS, "Congrats! Your email has been registered");
+      }
+    }
+  }
 
   return (
     <MainContainer>
@@ -40,7 +69,7 @@ export default function Home() {
               <input ref={firstInputRef} type="text" className='fs-xm padd-xs-s b-accent br-s c-primary f1 marg-xs' placeholder='Enter email address' />
               <button
                 className='accent-hover-effect fs-xm padd-xs-s br-s b-accent marg-xs'
-                onClick={() => { }}
+                onClick={() => { register(0) }}
               >
                 Get early access
               </button>
@@ -78,14 +107,14 @@ export default function Home() {
         </div>
 
         <div className='f-row jc-c ai-c f-wrap'>
-        <ScrollAnimation.ScaleIn>
-          <Image
-            className='arrow-img'
-            alt="Accent colored arrow image"
-            src="/arrow-accent.webp"
-            width={!isMobile ? "347" : "280"}
-            height={!isMobile ? "347" : "280"}
-          />
+          <ScrollAnimation.ScaleIn>
+            <Image
+              className='arrow-img'
+              alt="Accent colored arrow image"
+              src="/arrow-accent.webp"
+              width={!isMobile ? "347" : "280"}
+              height={!isMobile ? "347" : "280"}
+            />
           </ScrollAnimation.ScaleIn>
         </div>
 
@@ -128,10 +157,10 @@ export default function Home() {
             <div className='marg-xl-m'>
               <h3 className='fs-xxm fw-l c-white'>Become an early Ambassador and get 90% of subscription revenues.</h3>
               <div className='f-row jc-c f-wrap'>
-                <input ref={firstInputRef} type="text" className='fs-xm padd-xs-s b-blue br-s c-primary f1 marg-xs' placeholder='Enter email address' />
+                <input ref={secondInputRef} type="text" className='fs-xm padd-xs-s b-blue br-s c-primary f1 marg-xs' placeholder='Enter email address' />
                 <button
                   className='secondary-hover-effect fs-xm padd-xs-s br-s b-secondary marg-xs'
-                  onClick={() => { }}
+                  onClick={() => { register(1) }}
                 >
                   Get early access
                 </button>
@@ -146,7 +175,7 @@ export default function Home() {
         <div className='f-row jc-c f-wrap tool-container b-marg-l'>
           {
             TOOLS_ITEMS.map((itm, i) => {
-              return <ScrollAnimation.FadeIn key={`i-t-i-${i}`} className='c-primary tool-item f-col jc-c padd-s-m' style={{ backgroundImage: `url(/${itm.background})` }} animStyle={ { transition: `.75s ease-in-out ${0.25 * (i + 1)}s`}}>
+              return <ScrollAnimation.FadeIn key={`i-t-i-${i}`} className='c-primary tool-item f-col jc-c padd-s-m' style={{ backgroundImage: `url(/${itm.background})` }} animStyle={{ transition: `.75s ease-in-out ${0.25 * (i + 1)}s` }}>
                 <h3 className='fs-xl fw-l tool-marg'>{itm.title}</h3>
                 <p className='fs-xm tool-marg'>{itm.description}</p>
               </ScrollAnimation.FadeIn>;
