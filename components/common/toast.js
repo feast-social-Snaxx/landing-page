@@ -62,7 +62,7 @@ export default function Toast({ toastList, autoDelete, dismissTime }) {
                 toastList.map((toast, i) =>
                     <div
                         key={i}
-                        className={`notification toast`}
+                        className={`notification padd-xs-s br-s toast`}
                         style={{ backgroundColor: TOAST_THEMES[toast.type].backgroundColor }}
                     >
                         <div className={"fs-m toast-content"}>

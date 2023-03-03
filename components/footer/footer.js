@@ -1,5 +1,6 @@
 import { Instagram } from "@mui/icons-material";
 import Image from "next/image";
+import Link from "next/link";
 import { useAppDataContext } from "../../contexts/app-data-context";
 
 export default function Footer() {
@@ -21,8 +22,8 @@ export default function Footer() {
                 </div>
                 <div className="f1 f-row jc-sb footer-link-bloc">
                     <div className="footer-bloc">
-                        <p className="fs-xm footer-link">About us</p>
-                        <p className="fs-xm footer-link">How it works</p>
+                        <p><Link className="fs-xm footer-link" href="#about">About us</Link></p>
+                        <p><Link className="fs-xm footer-link" href="#features">How it works</Link></p>
                     </div>
                     <div className="footer-bloc">
                         <div className="footer-link">

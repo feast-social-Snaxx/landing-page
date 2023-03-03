@@ -48,7 +48,7 @@ const AnimateIn = ({ from, to, children, className, style = {}, animStyle = { tr
   );
 };
 
-const FadeIn = ({ children, className, animStyle= { transition: ".75 ease-in-out" }, style = {} }) => (
+const FadeIn = ({ children, className, animStyle= { transition: ".75s ease-in-out" }, style = {} }) => (
   <AnimateIn from={{ opacity: 0 }} to={{ opacity: 1 }} className={className} style={style} animStyle={animStyle}>
     {children}
   </AnimateIn>

@@ -7,6 +7,7 @@ import ScrollAnimation from '../components/common/scroll-animation';
 import { useAppToastContext } from '../contexts/app-toast-context';
 import { ToastType } from '../components/common/toast';
 import snaxxApiService from '../services/snaxx-api-service';
+import { TypeAnimation } from 'react-type-animation';
 
 const TOOLS_ITEMS = [
   {
@@ -61,32 +62,60 @@ export default function Home() {
     <MainContainer>
       <section className='f-row jc-sb c-primary index-row-1 b-marg-l'>
         <div className='f1 padd-s-m'>
-          <h1 className='fs-xl fw-l'>Unleash your culinary creativity & get paid.</h1>
-          <h2 className='fs-l fw-l' style={{ marginTop: "-.5em" }}>For amateur chefs and pros.</h2>
+          <h1 className='fs-xl fw-b'>Unleash your culinary<br /><span className="accent-circle">creativity & get paid.</span></h1>
+
+          <TypeAnimation
+            className='fs-l fw-l' style={{ marginTop: "-.5em" }}
+            sequence={[
+              'For amateur chefs and pros.',
+              3000,
+              'For athletes.',
+              3000,
+              'For lifestyle creators.',
+              3000
+            ]}
+            wrapper="div"
+            cursor={true}
+            repeat={Infinity}
+          />
+          <div className='spacer-l'></div>
           <div>
-            <p className="fs-xm">Unlock a world flavors</p>
             <div className='f-row jc-c f-wrap'>
               <input ref={firstInputRef} type="text" className='fs-xm padd-xs-s b-accent br-s c-primary f1 marg-xs' placeholder='Enter email address' />
               <button
-                className='accent-hover-effect fs-xm padd-xs-s br-s b-accent marg-xs'
+                className='accent-hover-effect fs-xm padd-xs-s br-s b-accent marg-xs fw-b'
                 onClick={() => { register(0) }}
               >
                 Get early access
               </button>
             </div>
           </div>
+          <p className="fs-xm txt-c"><i>“Unlock a World of Flavors”</i></p>
         </div>
-        <div className='f1 f-row jc-c ai-c'>
+        <div className='f1 f-row jc-c ai-c' style={{ minWidth: "45vw" }}>
           <Image
             alt="Demo with phone image"
             src="/demo-phone.webp"
-            width={!isMobile ? "571" : "320"}
-            height={!isMobile ? "609" : "341"}
+            width={!isMobile ? "435" : "320"}
+            height={!isMobile ? "609" : "448"}
           />
+          <div className='f-col abs-pos bubble-bloc'>
+            <div className='bubble bubble1 br-s marg-xs'>
+              Cook your favorite dish
+            </div>
+
+            <div className='bubble bubble2 br-s marg-xs'>
+              Share it on Snaxx
+            </div>
+
+            <div className='bubble bubble3 br-s marg-xs'>
+              Get paid by your subscribers
+            </div>
+          </div>
         </div>
       </section>
 
-      <section className='f-col c-primary index-row-2 b-marg-l'>
+      <section className='f-col c-primary index-row-2 b-marg-l' id="about">
         <div className='f-row jc-sa ai-c f-wrap'>
           <ScrollAnimation.ScaleIn>
             <Image
@@ -97,11 +126,11 @@ export default function Home() {
               height={!isMobile ? "640" : "440"}
             />
           </ScrollAnimation.ScaleIn>
-          <div className={`padd-s-m ${!isMobile ? "lhw" : "lfw"}`}>
+          <div className={`txt-c padd-s-m ${!isMobile ? "lhw" : "lfw"}`}>
             <ScrollAnimation.FadeUp>
               <div className='spacer-m'></div>
-              <h2 className='fs-xl fw-l'>What is SNAXX ?</h2>
-              <p className='fs-xm'>Snaxx is the ultimate destination for food enthusiasts looking to display their creativity and get paid for it. With its user-friendly tools and supportive community, Snaxx provides an outlet to showcase your culinary creations, food journey, daily food routines, food critic, diets, family recipes, and so much more. Whether you're a seasoned chef or just enjoy cooking for fun, Snaxx is the perfect place for you to share your passion and get rewarded for it.</p>
+              <h2 className='fs-xl fw-l'>What is <span className="title-highlight-primary br-s fs-xxl">SNAXX</span></h2>
+              <p className='fs-xxm'>The ultimate food sharing platform for <b>any creators</b> to display their <b>culinary content</b> to their audience through subscriptions & exclusive custom requests.</p>
             </ScrollAnimation.FadeUp>
           </div>
         </div>
@@ -118,18 +147,19 @@ export default function Home() {
           </ScrollAnimation.ScaleIn>
         </div>
 
-        <div className='f-row jc-sa ai-c f-wrap'>
+        <div className='txt-c f-row jc-sa ai-c f-wrap' id="features">
           <div className={`f-col ${!isMobile ? "lhw" : "lfw"}`}>
             <div className="padd-s-m">
               <ScrollAnimation.FadeUp>
-                <h2 className='fs-xl fw-l'>Empowering creators</h2>
-                <p className='fs-xm'>Our tools and features make it simple to grow your audience and connect with people from around the world through shared love of food. Whether you're an athlete, lifestyle creator, artist, fitness guru or anything in between, everyone can showcase their unique cooking style on Snaxx.</p>
+                <h2 className='fs-xl fw-l'>Empowering <span className="title-highlight-accent br-s">Creators</span></h2>
+                <p className='fs-xxm'>Whether you're a seasoned chef, athlete, model, lifestyle creator or just enjoy cooking for fun come <b>share</b> your unique creations by offering your audience <b>exclusive subscriber-only content.</b></p>
               </ScrollAnimation.FadeUp>
             </div>
+            <div className='spacer-m'></div>
             <div className='padd-s-m'>
               <ScrollAnimation.FadeUp>
-                <h2 className='fs-xl fw-l'>Directly monetize</h2>
-                <p className='fs-xm'>Strengthen your bond with your audience by offering unique subscriber-only content. Effortlessly monetize your creativity with our paywall system, and turn it into a growing source of recurring income.</p>
+                <h2 className='fs-xl fw-l'><span className="title-highlight-accent br-s">Community</span> Focus</h2>
+                <p className='fs-xxm'>Connect with & <b>grow</b> your audience from <b>around the world</b> through interactive features like private messages, lives, recipe-sharing, cooking classes, & more.</p>
               </ScrollAnimation.FadeUp>
             </div>
           </div>
@@ -145,30 +175,23 @@ export default function Home() {
         </div>
       </section>
 
-      <section className='f-col ai-c padd-s-m'>
-        <div className='f-row f-wrap blue-banner b-marg-l'>
-          <div className='c-white f1 padd-s-m bg-bubbles'>
-            <div className='marg-xl-m'>
-              <h2 className='fs-xl fw-l'>Community focus</h2>
-              <p className='fs-xm'>Elevate your connection with your community through interactive features like private messages, recipe suggestions, cooking classes, and more.</p>
-            </div>
-          </div>
-          <div className='f1 padd-s-m'>
-            <div className='marg-xl-m'>
-              <h3 className='fs-xxm fw-l c-white'>Become an early Ambassador and get 90% of subscription revenues.</h3>
-              <div className='f-row jc-c f-wrap'>
-                <input ref={secondInputRef} type="text" className='fs-xm padd-xs-s b-blue br-s c-primary f1 marg-xs' placeholder='Enter email address' />
-                <button
-                  className='secondary-hover-effect fs-xm padd-xs-s br-s b-secondary marg-xs'
-                  onClick={() => { register(1) }}
-                >
-                  Get early access
-                </button>
-              </div>
+      <section className='f-col ai-c padd-s-m' id="contact">
+        <div className='blue-banner br-s fw'>
+          <div className='marg-xl-m f-col ai-c txt-c'>
+            <h3 className={`fs-xl fw-l c-white ${!isMobile ? "ahw" : "lfw"}`}>Become an early SNAXX Ambassador and get 90% of subscription revenues</h3>
+            <p className='fs-xm c-white'>Enter your email and receive our more in depth presentation about perks and rewards</p>
+            <div className={`f-row jc-c f-wrap ${!isMobile ? "hw" : "lfw"}`}>
+              <input ref={secondInputRef} type="text" className='fs-xm padd-xs-s b-blue br-s c-primary f1 marg-xs' placeholder='Enter email address' />
+              <button
+                className='secondary-hover-effect fs-xm padd-xs-s br-s b-secondary marg-xs fw-b'
+                onClick={() => { register(1) }}
+              >
+                Get early access
+              </button>
             </div>
           </div>
         </div>
-        <div className='f-col jc-c ai-c c-primary b-marg-l'>
+        {/* <div className='f-col jc-c ai-c c-primary b-marg-l'>
           <h2 className='fs-xl fw-l txt-c'>Leverage our tools</h2>
           <p className={`fs-xm txt-c ${!isMobile ? "hw" : "lfw"}`}>Maximize your income, optimize your content, and gain valuable data insights through free tools.</p>
         </div>
@@ -181,9 +204,9 @@ export default function Home() {
               </ScrollAnimation.FadeIn>;
             })
           }
-        </div>
+        </div> */}
       </section>
-      <section className='f-row jc-c f-wrap bg-secondary'>
+      {/* <section className='f-row jc-c f-wrap bg-secondary'>
         <div className=''>
           <Image
             className='ambassador-img'
@@ -199,7 +222,7 @@ export default function Home() {
             <p className='fs-xm c-primary'>Join our Ambassadors program and be part of the Snaxx journey from the start. Take advantage of early adoption and reap the benefits and rewards along the way.</p>
           </div>
         </div>
-      </section>
-    </MainContainer >
+      </section> */}
+    </MainContainer>
   )
 };
